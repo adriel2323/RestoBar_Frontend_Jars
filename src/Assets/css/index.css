@@ -1,0 +1,61 @@
+body{
+  height: 100vh;
+}
+
+div .form-login{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.row-padre {
+  background-color: #46389A ;
+  padding-bottom: 8px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.row-platos {
+  justify-content: center;
+}
+
+.titulo {
+  font-size: 20px;
+}
+
+form {
+  background-color: #46389A;
+  box-shadow: 5px 5px 5px #251e5157;
+}
+
+.color-overlay{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  mix-blend-mode: normal;
+}
+
+.nav-header{
+  background-color: #46389A!important;
+  display:flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.navbar h1{
+  color: #fff;
+  text-align: center;
+  justify-content: center;
+}
+
+.card {
+  background-color: #A196E2!important;
+}
+
+.botones-ordenes {
+  position: absolute;
+  bottom: 0;
+  justify-content: space-between;
+}
