@@ -1,6 +1,6 @@
 import { Button , Form , Col,  Container, Row, Nav, Navbar  } from 'react-bootstrap';
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import { getMozos, url } from '../services';
+import { getMozos, url } from '../../services';
 import "bootstrap/dist/css/bootstrap.min.css";
 import AuthContext from '../../context/authProvider';
 import axios from 'axios';
