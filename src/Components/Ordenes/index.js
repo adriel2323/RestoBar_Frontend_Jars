@@ -6,6 +6,8 @@ import axios from 'axios';
 import Header from "../Header";
 import { Contador } from '../Contador';
 import { url } from '../services';
+import { variables } from '../../variables';
+
 
 const Ordenes = () => {
   const { nuevaOrden, confirmarPedido } = useContext(OrdenContext);
@@ -111,7 +113,7 @@ const Ordenes = () => {
                 <th>Cantidad</th>
               </tr>
             </thead>
-            <tbody style={{backgroundColor:'#b3a9ed'}} >
+            <tbody style={{backgroundColor:variables.colorTerciario}} >
             {rows.map((plato) => (
                 <tr key={plato.idPlato} style={{ fontWeight:'400' }}>
                   <td style={{verticalAlign: 'middle'}}>{plato.dscPlato}</td>
@@ -131,7 +133,7 @@ const Ordenes = () => {
           <Col>
             <Button variant='primary' 
             style={{
-              backgroundColor: '#46389A', borderRadius: '15px',
+              backgroundColor: variables.colorPrimario, borderRadius: '15px',
               border: 'none', whiteSpace: 'nowrap',
               padding: '10px 15px'
           }}
@@ -140,7 +142,7 @@ const Ordenes = () => {
           <Col>
             <Button variant="primary" 
             style={{
-              backgroundColor: '#46389A', borderRadius: '15px',
+              backgroundColor: variables.colorPrimario, borderRadius: '15px',
               border: 'none', whiteSpace: 'nowrap',
               padding: '10px 15px'
           }}
@@ -153,7 +155,7 @@ const Ordenes = () => {
             orden !== null ? (
               <Col>
               <Button variant='primary' 
-                style={{backgroundColor:'#46389A', borderRadius:'15px',
+                style={{backgroundColor:variables.colorPrimario, borderRadius:'15px',
                 border:'none',  whiteSpace: 'nowrap',
                  padding:'10px 102px' }}
                 onClick={()=>{
@@ -167,7 +169,7 @@ const Ordenes = () => {
             ) : (
               <Col>
               <Button variant='primary' 
-              style={{backgroundColor:'#46389A', borderRadius:'15px',
+              style={{backgroundColor:variables.colorPrimario, borderRadius:'15px',
               border:'none',  whiteSpace: 'nowrap',
                padding:'10px 90px' }}
                 onClick={()=>{
@@ -194,13 +196,13 @@ const Ordenes = () => {
             position:'fixed', bottom:'20px', right:'0', left:'0', margin: '0px 15px' }}>
             <Col>
               <Button variant='primary' 
-              style={{backgroundColor:'#46389A', borderRadius:'15px',border:'none',
+              style={{backgroundColor:variables.colorPrimario, borderRadius:'15px',border:'none',
                 whiteSpace: 'nowrap', padding:'10px 15px' }}
               onClick={()=>navigate('/mesas')}>Ver mesas</Button>
             </Col>
             <Col>
               <Button variant="primary" 
-              style={{backgroundColor:'#46389A', borderRadius:'15px',border:'none',
+              style={{backgroundColor:variables.colorPrimario, borderRadius:'15px',border:'none',
                 whiteSpace: 'nowrap', padding:'10px 10px' }}
               onClick={()=>navigate(`/menu/${nroMesa}`)}>Volver a platos</Button>
             </Col>

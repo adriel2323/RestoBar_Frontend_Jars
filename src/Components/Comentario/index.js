@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { Input } from 'reactstrap';
 import { OrdenContext } from '../../context/OrdenContext';
 import { Row, Col } from 'react-bootstrap'
+import { variables } from '../../variables';
 
 function Comentario(props) {
     const { nuevaOrden, setNuevaOrden } = useContext(OrdenContext)
@@ -62,7 +63,7 @@ function Comentario(props) {
                                         onChange={(e) => setComentario(e.target.value)}
                                     />
                                     <Button variant="primary"
-                                     style={{backgroundColor: '#46389A', border:'none'
+                                     style={{backgroundColor: variables.colorPrimario, border:'none'
                                      , marginTop:'15px', borderRadius:'7px'}}
                                     onClick={() => handleAgregarComentario(plato.idPlato)}>Comentar</Button>
                                 </Col>
@@ -78,7 +79,7 @@ function Comentario(props) {
                 
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide} style={{backgroundColor: '#A196E2', border:'none', color:'black', borderRadius:'7px'}}>Cerrar</Button>
+                <Button onClick={props.onHide} style={{backgroundColor: variables.colorSecundario, border:'none', color:'black', borderRadius:'7px'}}>Cerrar</Button>
             </Modal.Footer>
         </Modal>
     );

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { Button, Container, Row, Col, Form, Modal } from 'react-bootstrap';
 import Header from '../Header';
 import { getMesas, /* getComanderas */ } from '../services';
+import { variables } from '../../variables';
 
 const Mesas = () => {
 
@@ -72,14 +73,14 @@ const Mesas = () => {
               filtroMesas ? mesasFiltradas.map(mesa => {
 
                 if (mesa.estado === 0) {
-                  color = '#DEDEDE';
+                  color = variables.colorTerciario;
                   colorL = 'black';
                 } else if (mesa.estado === 2) {
-                  color = '#46389A';
-                  colorL = '#fff';
+                  color = variables.colorPrimario;
+                  colorL = variables.blanco;
                 } else if (mesa.estado === 1) {
-                  color = '#868686';
-                  colorL = '#fff';
+                  color = variables.colorDesactivado;
+                  colorL = variables.blanco;
                 }
 
                 return (
@@ -95,14 +96,14 @@ const Mesas = () => {
               }) : mesas.map(mesa => {
 
                 if (mesa.estado === 0) {
-                  color = '#DEDEDE';
+                  color = variables.colorTerciario;
                   colorL = 'black';
                 } else if (mesa.estado === 2) {
-                  color = '#46389A';
-                  colorL = '#fff';
+                  color = variables.colorPrimario;
+                  colorL = variables.blanco;
                 } else if (mesa.estado === 1) {
-                  color = '#868686';
-                  colorL = '#fff';
+                  color = variables.colorDesactivado;
+                  colorL = variables.blanco;
                 }
 
                 return (
@@ -123,10 +124,10 @@ const Mesas = () => {
               </Modal.Header>
               <Modal.Footer>
                 <Button onClick={handleClose}
-                style={{backgroundColor: '#A196E2', border:'none', color: 'black'}}>
+                style={{backgroundColor: variables.colorSecundario, border:'none', color: 'black'}}>
                     Cancelar
                 </Button>
-                <Button onClick={handleConfirm} style={{backgroundColor: '#46389A', border:'none'}}>
+                <Button onClick={handleConfirm} style={{backgroundColor: variables.colorPrimario, border:'none'}}>
                     Confirmar
                 </Button>
               </Modal.Footer>

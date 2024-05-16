@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from '../Header';
 import { url } from "../services";
+import { variables } from "../../variables";
 
 const OrdenConfirmada = () => {
     const nroMesa = window.location.pathname.split("/").pop()
@@ -102,7 +103,7 @@ const OrdenConfirmada = () => {
                             </thead>
                             <tbody >
                                 {rows.map((plato) => (
-                                    <tr key={plato.key} style={{ fontWeight:'400', backgroundColor:'#D8D8D8'}} >
+                                    <tr key={plato.key} style={{ fontWeight:'400', backgroundColor:variables.colorTerciario}} >
                                         <td>{plato.dscPlato}</td>
                                         <td>{plato.cantidad}</td>
                                     </tr>
@@ -119,7 +120,7 @@ const OrdenConfirmada = () => {
                             <Col>
                                 <Button variant="primary"
                                     style={{
-                                        backgroundColor: '#46389A', borderRadius:'15px',
+                                        backgroundColor: variables.colorPrimario, borderRadius:'15px',
                                         border: 'none', whiteSpace: 'nowrap',
                                         padding: '10px 15px'
                                     }}
@@ -128,7 +129,7 @@ const OrdenConfirmada = () => {
                             <Col>
                                 <Button variant="primary"
                                     style={{
-                                        backgroundColor: '#46389A', borderRadius:'15px',
+                                        backgroundColor: variables.colorPrimario, borderRadius:'15px',
                                         border: 'none', whiteSpace: 'nowrap',
                                         padding: '10px 15px'
                                     }}
@@ -139,7 +140,7 @@ const OrdenConfirmada = () => {
         position:'fixed', bottom:'15px', right:'0', left:'0', margin: '0px 10px'}}>
                             <Col>
                                 <Button variant="primary"
-                                    style={{backgroundColor:'#46389A', borderRadius:'15px',
+                                    style={{backgroundColor:variables.colorPrimario, borderRadius:'15px',
                                     border:'none',  whiteSpace: 'nowrap',
                                     padding:'10px 81px' }}
                                     onClick={() => { handleShow(); }}>Cerrar Mesa</Button>
@@ -151,11 +152,11 @@ const OrdenConfirmada = () => {
                             </Modal.Header>
                             <Modal.Footer>
                                 <Button onClick={handleClose}
-                                    style={{ backgroundColor: '#A196E2', border: 'none', color: 'black', borderRadius:'7px' }}>
+                                    style={{ backgroundColor: variables.colorSecundario, border: 'none', color: 'black', borderRadius:'7px' }}>
                                     Cancelar
                                 </Button>
                                 <Button onClick={handleConfirm}
-                                    style={{ backgroundColor: '#46389A', border: 'none', borderRadius:'7px' }}>
+                                    style={{ backgroundColor: variables.colorPrimario, border: 'none', borderRadius:'7px' }}>
                                     Confirmar
                                 </Button>
                             </Modal.Footer>
@@ -176,7 +177,7 @@ const OrdenConfirmada = () => {
                             justifyContent: 'space-between', textAlign: 'center',
                             position: 'fixed', bottom: '20px', right: '0', left: '0', margin: '0px 15px'
                         }}>
-                            <Button variant="primary" style={{ backgroundColor: '#46389A', borderRadius:'15px', border: 'none', whiteSpace: 'nowrap' }}
+                            <Button variant="primary" style={{ backgroundColor: variables.colorPrimario, borderRadius:'15px', border: 'none', whiteSpace: 'nowrap' }}
                             onClick={() => { noOrder() }}>Mesa sin orden</Button>
                         </Row>
                     </Container>

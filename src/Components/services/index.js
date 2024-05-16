@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const url = 'http://10.84.1.112:3050'
+export const url = 'http://192.168.100.210:3001'
 
 // Platos
 export async function getPlatos () {

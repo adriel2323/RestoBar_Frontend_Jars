@@ -3,6 +3,7 @@ import { Navbar, NavDropdown, Modal, Button } from "react-bootstrap";
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { url } from '../services';
+import { variables } from '../../variables';
 
 const Header = (props, req, res) => {
     const navigate = useNavigate()
@@ -37,10 +38,10 @@ const Header = (props, req, res) => {
         <>
             <Navbar className='d-flex justify-content-between align-items-center'
             style={{maxHeight:'70px'}}>
-                <h1 className='titulo' style={{color:'#fff', margin: '0 0 0 25px'}}>
+                <h1 className='titulo' style={{color:variables.blanco, margin: '0 0 0 25px'}}>
                 {props.título}
                 </h1>
-                <NavDropdown style={{ color:'#fff', display: 'inline-block' }}
+                <NavDropdown style={{ color:variables.blanco, display: 'inline-block' }}
                 className='p-4' title={nomMozo} id="basic-nav-dropdown" >
                 <NavDropdown.Item onClick={()=>navigate("/mesas")}>Ver mesas</NavDropdown.Item>
                 {ordenes.map((orden) => (
@@ -57,11 +58,11 @@ const Header = (props, req, res) => {
                 </Modal.Header>
                 <Modal.Footer>
                 <Button onClick={handleClose}
-                style={{backgroundColor: '#A196E2', border:'none', color: 'black'}}>
+                style={{backgroundColor: variables.colorSecundario, border:'none', color: 'black'}}>
                     Cancelar
                 </Button>
                 <Button onClick={handleConfirm}
-                style={{backgroundColor: '#46389A', border:'none'}}>
+                style={{backgroundColor: variables.colorPrimario, border:'none'}}>
                     Confirmar
                 </Button>
                 </Modal.Footer>

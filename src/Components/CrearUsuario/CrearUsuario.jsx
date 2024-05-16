@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AuthContext from '../../context/authProvider';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { variables } from '../../variables';
 
 
 const LoginTest = () => {
@@ -84,7 +85,7 @@ const LoginTest = () => {
                 <h1 style={{margin: "0 auto"}}>
                         Nombre del mozo
                 </h1>
-                <Nav.Link style={{ color:'#fff', display: 'inline-block'}}
+                <Nav.Link style={{ color:variables.blanco, display: 'inline-block'}}
                 className='p-4' onClick={handleRemove}>
                     Salir
                 </Nav.Link>
@@ -94,7 +95,7 @@ const LoginTest = () => {
               <Row >
                 {
                   mozos.map(mozo => (
-                    <Button className='mt-3' style={{backgroundColor: '#A196E2', border:'none', color:'black'}}
+                    <Button className='mt-3' style={{backgroundColor: variables.colorSecundario, border:'none', color:'black'}}
                      onClick={()=>{navigate("/mesas"); guardarMozo(mozo)}} 
                      key={mozo.idMozo} value={mozo.nomMozo}>
                         {mozo.nomMozo}
@@ -112,7 +113,7 @@ const LoginTest = () => {
                 <Form className='form-login p-4 p-sm-3' 
                 style={{ maxWidth:"255px", display: 'flex', alignItems: 'center', borderRadius:"20px" }}
                 onSubmit={handleSubmit}>
-                    <Form.Label  className='logo-text' style={{color:'#fff'}} >Bienvenido</Form.Label>
+                    <Form.Label  className='logo-text' style={{color:variables.blanco}} >Bienvenido</Form.Label>
                     <Col>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -135,7 +136,7 @@ const LoginTest = () => {
                     </p>
 
                     <Button type="submit"
-                    style={{backgroundColor: '#A196E2', border:'none', color:'black'}}>
+                    style={{backgroundColor: variables.colorSecundario, border:'none', color:'black'}}>
                         Ingresar
                     </Button>
                     </Col>

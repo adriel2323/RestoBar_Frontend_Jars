@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import FiltroRubros from '../FiltroRubros';
 import {RxHamburgerMenu} from   'react-icons/rx'
+import { variables } from '../../variables';
 
 function ContenedorRubros({rubros, setFiltroRubro}) {
     const [show, setShow] = useState(false);
@@ -12,7 +13,7 @@ function ContenedorRubros({rubros, setFiltroRubro}) {
        setShow(true)};
     return (
         <>
-        <Button style={{backgroundColor: '#FFFFFF', border:"none"}}  onClick={handleShow}>
+        <Button style={{backgroundColor: variables.blanco, border:"none"}}  onClick={handleShow}>
         <RxHamburgerMenu style={{color:'000000', strokeWidth:'1'}} />
         </Button>
 
@@ -20,7 +21,7 @@ function ContenedorRubros({rubros, setFiltroRubro}) {
             <Offcanvas.Body style={{textAlign :'center'}}>
               <FiltroRubros rubros={rubros} setFiltroRubro={setFiltroRubro} handleClose={handleClose}/>
               <Button variant="secondary" 
-              style={{backgroundColor: '#46389A', border:'none', textAlign:'center'}}
+              style={{backgroundColor: variables.colorPrimario, border:'none', textAlign:'center'}}
               onClick={handleClose}>
                 Cerrar
               </Button>

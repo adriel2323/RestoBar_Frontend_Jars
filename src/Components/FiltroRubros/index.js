@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { variables } from "../../variables";
 
 const FiltroRubros = ({ rubros, setFiltroRubro, handleClose }) => {
 
@@ -7,10 +8,10 @@ const FiltroRubros = ({ rubros, setFiltroRubro, handleClose }) => {
     <>
       <Button variant="outline-primary" className="d-block w-100 mb-2"
         style={{
-          color: '#46389A',
+          color: variables.colorPrimario,
           fontWeight: '600',
           borderWidth: 'medium',
-          borderColor: '#46389A',
+          borderColor: variables.colorPrimario,
           borderRadius: '10px'
         }}
         onClick={() => { setFiltroRubro(0); handleClose() }}>Mostrar todos</Button>
@@ -19,10 +20,10 @@ const FiltroRubros = ({ rubros, setFiltroRubro, handleClose }) => {
           <Button
             variant="outline-primary"
             style={{
-              color: '#46389A',
+              color: variables.colorPrimario,
               fontWeight: '600',
               borderWidth: 'medium',
-              borderColor: '#46389A',
+              borderColor: variables.colorPrimario,
               borderRadius: '10px',
             }}
             className="d-block w-100 mb-2"

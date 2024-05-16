@@ -1,3 +1,9 @@
+:root{
+  --color_primario:#F25C05;
+  --color_secundario:#F2A81D;
+  --color_terciario:#BFBC8F;
+}
+
 body{
   height: 100vh;
 }
@@ -10,7 +16,7 @@ div .form-login{
 }
 
 .row-padre {
-  background-color: #46389A ;
+  background-color: var(--color_primario) ;
   padding-bottom: 8px;
   justify-content: center;
   align-items: center;
@@ -26,7 +32,7 @@ div .form-login{
 }
 
 form {
-  background-color: #46389A;
+  background-color: var(--color_primario);
   box-shadow: 5px 5px 5px #251e5157;
 }
 
@@ -38,20 +44,20 @@ form {
 }
 
 .nav-header{
-  background-color: #46389A!important;
+  background-color: var(--color_primario)!important;
   display:flex;
   width: 100%;
   justify-content: space-between;
 }
 
 .navbar h1{
-  color: #fff;
+  color: var(--color_terciario);
   text-align: center;
   justify-content: center;
 }
 
 .card {
-  background-color: #A196E2!important;
+  background-color: var(--color_secundario)!important;
 }
 
 .botones-ordenes {

@@ -5,7 +5,7 @@ import { FaRegCommentDots } from 'react-icons/fa'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import Comentario from '../Comentario';
-
+import { variables } from '../../variables';
 
 const Footer = (urlId) => {
   const [modalShow, setModalShow] = useState(false);
@@ -15,11 +15,11 @@ const Footer = (urlId) => {
   return (
       <Navbar
       className="fixed-bottom"
-      style={{backgroundColor: '#46389A'}}>
+      style={{backgroundColor: variables.colorPrimario}}>
           <Col style={{textAlign:'center'}}>
             <NavLink href="#">
               <Button 
-              style={{whiteSpace:'nowrap',backgroundColor:'#fff', color:'#46389A',borderRadius:'20px',borderColor:'#8E8E8E'}}
+              style={{whiteSpace:'nowrap',backgroundColor:variables.blanco, color:variables.colorPrimario,borderRadius:'20px',borderColor:variables.colorDesactivado}}
               onClick={() => setModalShow(true)}>
                 Comentario <FaRegCommentDots />
               </Button>
@@ -32,7 +32,7 @@ const Footer = (urlId) => {
           <Col style={{textAlign:'center'}}>
             <NavLink>
               <Button
-                style={{ backgroundColor:'#fff', color:'#46389A', borderRadius:'20px',borderColor:'#8E8E8E'}}
+                style={{ backgroundColor:variables.blanco, color:variables.colorPrimario, borderRadius:'20px',borderColor:variables.colorDesactivado}}
                 onClick={() => {
                   navigate(`/orden/${urlId.urlId}`)
                 }}>
