@@ -115,28 +115,37 @@ const OrdenConfirmada = () => {
                         </Row>
                         <Row style={{
                             justifyContent: 'space-between', textAlign: 'center',
-                            position: 'fixed', bottom: '80px', right: '0', left: '0', margin: '0px 15px'
+                            position: 'fixed', bottom: '80px', right: '0', left: '0', 
                         }}>
-                            <Col>
+                            <Col style={{
+                                alignContent: 'center', justifyContent: 'center',
+                                width: '40%'
+                            }}>
                                 <Button variant="primary"
                                     style={{
-                                        backgroundColor: variables.colorPrimario, borderRadius:'15px',
+                                        backgroundColor: variables.colorPrimario, borderRadius:'5px',
                                         border: 'none', whiteSpace: 'nowrap',
-                                        padding: '10px 15px'
+                                        padding: '10px 15px',
+                                        width: '60%'
+                                        
                                     }}
                                     onClick={() => navigate('/mesas')}>Ver mesas</Button>
                             </Col>
-                            <Col>
+                            <Col style={{
+                                alignContent: 'center', justifyContent: 'center',
+                                width: '40%'
+                            }}>
                                 <Button variant="primary"
                                     style={{
-                                        backgroundColor: variables.colorPrimario, borderRadius:'15px',
+                                        backgroundColor: variables.colorPrimario, borderRadius:'5px',
                                         border: 'none', whiteSpace: 'nowrap',
-                                        padding: '10px 15px'
+                                        padding: '10px 15px',
+                                        width: '60%'
                                     }}
                                     onClick={() => navigate(`/menu/${nroMesa}`)}>Ver platos</Button>
                             </Col>
                         </Row>
-                        <Row style={{justifyContent:'space-between', textAlign: 'center', 
+                        {/* <Row style={{justifyContent:'space-between', textAlign: 'center', 
         position:'fixed', bottom:'15px', right:'0', left:'0', margin: '0px 10px'}}>
                             <Col>
                                 <Button variant="primary"
@@ -145,7 +154,7 @@ const OrdenConfirmada = () => {
                                     padding:'10px 81px' }}
                                     onClick={() => { handleShow(); }}>Cerrar Mesa</Button>
                             </Col>
-                        </Row>
+                        </Row> */}
                         <Modal show={show} onHide={handleClose} animation={false} centered>
                             <Modal.Header closeButton>
                                 <Modal.Title>¿Seguro que quieres cerrar la mesa {nroMesa}?</Modal.Title>

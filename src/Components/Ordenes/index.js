@@ -130,21 +130,26 @@ const Ordenes = () => {
         position:'fixed', bottom:'80px',
          right:'0', left:'0',
           margin: '0px 15px'}}>
-          <Col>
+          <Col style={{
+                                alignContent: 'center', justifyContent: 'center',
+                                width: '40%'
+                            }}>
             <Button variant='primary' 
             style={{
-              backgroundColor: variables.colorPrimario, borderRadius: '15px',
+              backgroundColor: variables.colorPrimario, borderRadius: '5px',
               border: 'none', whiteSpace: 'nowrap',
-              padding: '10px 15px'
+              padding: '10px 15px',
+              with: '60%'
           }}
             onClick={()=>navigate('/mesas')}>Ver mesas</Button>
           </Col>
           <Col>
             <Button variant="primary" 
             style={{
-              backgroundColor: variables.colorPrimario, borderRadius: '15px',
+              backgroundColor: variables.colorPrimario, borderRadius: '5px',
               border: 'none', whiteSpace: 'nowrap',
-              padding: '10px 15px'
+              padding: '10px 15px',
+              with: '60%'
           }}
             onClick={()=>navigate(`/menu/${nroMesa}`)}>Ver platos</Button>
           </Col>
