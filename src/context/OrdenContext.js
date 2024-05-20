@@ -74,11 +74,23 @@ export const OrdenProvider = ({ children }) => {
     setOrdenConfirmada([])
     localStorage.removeItem(`orden-${nroMesa}`)
   }
+
+  function limpiarPedidos(mesas){
+    mesas.forEach(mesa => {
+      if(mesa.estado === 0 && localStorage[`orden-${mesa.nroMesa}`]){
+        localStorage.removeItem(`orden-${mesa.nroMesa}`)
+      }
+    })
+    
+  }
+
   return (
-    <OrdenContext.Provider value={{ ordenConfirmada, nuevaOrden, setNuevaOrden,eliminarPlato, agregarPlato, clearPedido, actualizarCantidad, confirmarPedido }}>
+    <OrdenContext.Provider value={{ ordenConfirmada, nuevaOrden, setNuevaOrden,eliminarPlato, agregarPlato, clearPedido, actualizarCantidad, confirmarPedido,limpiarPedidos }}>
       {children}
     </OrdenContext.Provider>
   );
 };
+
+
 
 export {OrdenContext};

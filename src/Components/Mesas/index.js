@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { Button, Container, Row, Col, Form, Modal } from 'react-bootstrap';
 import Header from '../Header';
 import { getMesas, /* getComanderas */ } from '../services';
 import { variables } from '../../variables';
+import { OrdenContext } from '../../context/OrdenContext';
 
 const Mesas = () => {
+  const {limpiarPedidos} = useContext(OrdenContext);
 
   const [mesas, setMesas] = useState([]);
   const [filtroMesas, setFiltroMesas] = useState('')
@@ -23,9 +25,11 @@ const Mesas = () => {
         }));
         console.log('estas son las mesas ',mesasConUrl)
         setMesas(mesasConUrl)
+        limpiarPedidos(mesasConUrl,);
       }
     }
     mostrarMesas();
+    
   }, [])
 
   const [show, setShow] = useState(false);
