@@ -11,6 +11,7 @@ import { variables } from '../../variables';
 
 const Ordenes = () => {
   const { nuevaOrden, confirmarPedido } = useContext(OrdenContext);
+  const {ordenBD,setOrdenBD}=useState("")
   const nroMesa = window.location.pathname.split("/").pop()
   
   const rows = [];
@@ -93,7 +94,9 @@ const Ordenes = () => {
       console.log(err)
     }
   }
-  let orden = JSON.parse(localStorage.getItem(`orden-${nroMesa}`));
+
+
+  let orden = JSON.parse(localStorage.getItem(`orden-${nroMesa}`))
 
   const navigate = useNavigate();
 

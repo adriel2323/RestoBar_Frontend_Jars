@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState,useEffect } from "react"
 import { Button, Table, Row, Container, Col, Modal } from "react-bootstrap"
 import { OrdenContext } from "../../context/OrdenContext"
 import { useNavigate } from "react-router-dom";
@@ -9,11 +9,29 @@ import { variables } from "../../variables";
 
 const OrdenConfirmada = () => {
     const nroMesa = window.location.pathname.split("/").pop()
-    const { clearPedido } = useContext(OrdenContext)
+    const { clearPedido,setNuevaOrden } = useContext(OrdenContext)
+    const [ordenBD,setOrdenBD]=useState(false)
     let orden = JSON.parse(localStorage.getItem(`orden-${nroMesa}`));
     let rows = [];
     let total = 0;
     let contador = 0;
+    useEffect(()=>{
+        fetch(`${url}/platosmesa/${nroMesa}`)
+        .then(response=>response.json())
+        .then(
+            response=>{
+                setOrdenBD(response)
+                console.log('esta es la respuesta de la API ',response);
+
+                if(!orden){
+                    orden = ordenBD
+                }
+                
+                console.log('esta es la orden ',orden);
+            }
+        )
+    },[])
+    
 
     if (orden) {
         for (let key in orden.ordenes) {
