@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, NavDropdown, Modal, Button } from "react-bootstrap";
 import { useNavigate } from 'react-router';
 import axios from 'axios';
@@ -11,6 +11,7 @@ const Header = (props, req, res) => {
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    let nomMozo = '';
     const handleConfirm = () => {
         axios.get(`${url}/logOut`);
         localStorage.removeItem('mozo')
@@ -19,8 +20,14 @@ const Header = (props, req, res) => {
     };
     
     // TRAYENDO EL NOMBRE DEL MOZO DE LOCALSTORAGE (MOZO)
-    const nomMozo = (JSON.parse(localStorage.getItem('mozo'))).nomMozo
-    console.log(nomMozo)
+    useEffect(() => {
+        if(localStorage.getItem('mozo')===null){
+            navigate('/')
+        } else{
+            nomMozo = (JSON.parse(localStorage.getItem('mozo'))).nomMozo
+            console.log(nomMozo)
+        }
+    },[])
     
     const ordenes = [];
     for (let i = 0; i < localStorage.length; i++) {

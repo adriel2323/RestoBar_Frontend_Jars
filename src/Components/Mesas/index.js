@@ -5,6 +5,7 @@ import Header from '../Header';
 import { getMesas, /* getComanderas */ } from '../services';
 import { variables } from '../../variables';
 import { OrdenContext } from '../../context/OrdenContext';
+import { url} from '../services';
 
 const Mesas = () => {
   const {limpiarPedidos} = useContext(OrdenContext);
@@ -14,6 +15,22 @@ const Mesas = () => {
   const [mesaReservada, setMesaReservada] = useState(null);
 
   const mesasFiltradas = mesas.filter(mesa => mesa.nroMesa.toString().includes(filtroMesas));
+  async function cargarOrdenStorage(mesa) {
+    if(mesa.estado===2){
+      let orden={}
+      let nroMesa = mesa.nroMesa;
+      fetch(`${url}/platosmesa/${nroMesa}`)
+      .then(response => response.json())
+      .then(response => {
+        orden= response.orden;
+        const nuevasOrdenes = { [Date.now()]: orden };
+        localStorage.setItem(`orden-${nroMesa}`, JSON.stringify({ ordenes: nuevasOrdenes }));
+      })
+      .catch(error => console.error(error));
+  
+      
+    }
+  }
 
   useEffect(() => {
     async function mostrarMesas() {
@@ -23,8 +40,8 @@ const Mesas = () => {
           ...mesa,
           url: mesa.estado === 0 ? `/menu/${mesa.nroMesa}` : `/ordenConfirmada/${mesa.nroMesa}`
         }));
-        console.log('estas son las mesas ',mesasConUrl)
         setMesas(mesasConUrl)
+        mesasConUrl.map(mesa => cargarOrdenStorage(mesa))
         limpiarPedidos(mesasConUrl,);
       }
     }
@@ -52,7 +69,6 @@ const Mesas = () => {
     }
     handleClose();
   };
-
 
   let color;
   let colorL;

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState,useEffect } from "react";
 
 const OrdenContext = createContext();
 
@@ -10,6 +10,8 @@ export const OrdenProvider = ({ children }) => {
     total: 0,
   });
   const [ordenConfirmada, setOrdenConfirmada] = useState([])
+  const [ordenBD,setOrdenBD]=useState(false)
+  console.log('Esta es la nueva orden ',nuevaOrden);
 
   function confirmarPedido(nroMesa) {
     const orden = { ...nuevaOrden, nroMesa };
@@ -83,9 +85,11 @@ export const OrdenProvider = ({ children }) => {
     })
     
   }
+  
+
 
   return (
-    <OrdenContext.Provider value={{ ordenConfirmada, nuevaOrden, setNuevaOrden,eliminarPlato, agregarPlato, clearPedido, actualizarCantidad, confirmarPedido,limpiarPedidos }}>
+    <OrdenContext.Provider value={{ordenBD,setOrdenBD, ordenConfirmada, nuevaOrden, setNuevaOrden,eliminarPlato, agregarPlato, clearPedido, actualizarCantidad, confirmarPedido,limpiarPedidos }}>
       {children}
     </OrdenContext.Provider>
   );

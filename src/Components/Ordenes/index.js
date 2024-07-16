@@ -11,9 +11,7 @@ import { variables } from '../../variables';
 
 const Ordenes = () => {
   const { nuevaOrden, confirmarPedido } = useContext(OrdenContext);
-  const {ordenBD,setOrdenBD}=useState("")
   const nroMesa = window.location.pathname.split("/").pop()
-  
   const rows = [];
   const platosOrden = [];
   
@@ -24,13 +22,13 @@ const Ordenes = () => {
         platosOrden.push(Object.values(plato))
       }
   }
+  console.log('los platos de la orden ',platosOrden);
+  console.log('Esta son las rows ',rows);
 
   const imprimir = async () =>{
     const idMozo = JSON.stringify(JSON.parse(localStorage.getItem('mozo')))
     try{
-      console.log('esta es la nueva orden: ',nuevaOrden)
-      console.log('esta es la mesa: ',nroMesa)
-      console.log('esta es el mozo: ',idMozo)
+
       await axios.post(`${url}/imprimir`,
           JSON.stringify({nuevaOrden, nroMesa, idMozo}),
           {
@@ -62,6 +60,7 @@ const Ordenes = () => {
   const guardarPlatos = async () =>{
     const idMozo = JSON.stringify((JSON.parse(localStorage.getItem('mozo'))).idMozo)
     const importe = JSON.stringify(nuevaOrden.total);
+    console.log('los platos de la orden ',platosOrden);
     try{
       await axios.post(`${url}/guardar`,
         {platosOrden, nroMesa, idMozo, importe},
@@ -117,6 +116,7 @@ const Ordenes = () => {
               </tr>
             </thead>
             <tbody style={{backgroundColor:variables.colorTerciario}} >
+            
             {rows.map((plato) => (
                 <tr key={plato.idPlato} style={{ fontWeight:'400' }}>
                   <td style={{verticalAlign: 'middle'}}>{plato.dscPlato}</td>

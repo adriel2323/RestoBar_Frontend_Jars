@@ -9,30 +9,13 @@ import { variables } from "../../variables";
 
 const OrdenConfirmada = () => {
     const nroMesa = window.location.pathname.split("/").pop()
-    const { clearPedido,setNuevaOrden } = useContext(OrdenContext)
-    const [ordenBD,setOrdenBD]=useState(false)
+    const { clearPedido} = useContext(OrdenContext)
     let orden = JSON.parse(localStorage.getItem(`orden-${nroMesa}`));
+    console.log(orden);
     let rows = [];
     let total = 0;
     let contador = 0;
-    useEffect(()=>{
-        fetch(`${url}/platosmesa/${nroMesa}`)
-        .then(response=>response.json())
-        .then(
-            response=>{
-                setOrdenBD(response)
-                console.log('esta es la respuesta de la API ',response);
-
-                if(!orden){
-                    orden = ordenBD
-                }
-                
-                console.log('esta es la orden ',orden);
-            }
-        )
-    },[])
     
-
     if (orden) {
         for (let key in orden.ordenes) {
             total += orden.ordenes[key].total;
@@ -53,6 +36,7 @@ const OrdenConfirmada = () => {
             }
         }
     }
+    console.log('Estas son las rows ',rows);
 
     const estadoMesa = async () => {
         let estado = '0'; //Estado 0 = Libre
@@ -108,6 +92,7 @@ const OrdenConfirmada = () => {
         <React.Fragment>
             {orden !== null ? (
                 <React.Fragment>
+                    
                     <Row className='row-padre' style={{ margin:'0' }}>
                         <Header título={`ORDEN TOTAL: ${nroMesa}`} />
                     </Row>
