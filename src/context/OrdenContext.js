@@ -11,7 +11,7 @@ export const OrdenProvider = ({ children }) => {
   });
   const [ordenConfirmada, setOrdenConfirmada] = useState([])
   const [ordenBD,setOrdenBD]=useState(false)
-  console.log('Esta es la nueva orden ',nuevaOrden);
+  
 
   function confirmarPedido(nroMesa) {
     const orden = { ...nuevaOrden, nroMesa };

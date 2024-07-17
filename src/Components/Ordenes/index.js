@@ -22,9 +22,6 @@ const Ordenes = () => {
         platosOrden.push(Object.values(plato))
       }
   }
-  console.log('los platos de la orden ',platosOrden);
-  console.log('Esta son las rows ',rows);
-
   const imprimir = async () =>{
     const idMozo = JSON.stringify(JSON.parse(localStorage.getItem('mozo')))
     try{
@@ -60,7 +57,7 @@ const Ordenes = () => {
   const guardarPlatos = async () =>{
     const idMozo = JSON.stringify((JSON.parse(localStorage.getItem('mozo'))).idMozo)
     const importe = JSON.stringify(nuevaOrden.total);
-    console.log('los platos de la orden ',platosOrden);
+    
     try{
       await axios.post(`${url}/guardar`,
         {platosOrden, nroMesa, idMozo, importe},
@@ -82,6 +79,7 @@ const Ordenes = () => {
     try{
       await axios.post(`${url}/agregar`,
           {platosOrden, nroMesa},
+          
           {
               headers: { 'Content-Type': 'application/json'},
               withCredentials: true
@@ -98,7 +96,7 @@ const Ordenes = () => {
   let orden = JSON.parse(localStorage.getItem(`orden-${nroMesa}`))
 
   const navigate = useNavigate();
-
+  console.log('Estas son las filas ', rows);
 
   return (
     <>
@@ -127,7 +125,7 @@ const Ordenes = () => {
           </Table>
         
         <Row>
-        <h3 style={{textAlign:'right'}}>Total: {nuevaOrden.total}</h3>
+        <h3 style={{textAlign:'right'}}>Total: {nuevaOrden?.total||0}</h3>
         </Row>
         <Row style={{justifyContent:'space-between', textAlign: 'center',
         position:'fixed', bottom:'80px',

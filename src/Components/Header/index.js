@@ -14,7 +14,7 @@ const Header = (props, req, res) => {
     let nomMozo = '';
     const handleConfirm = () => {
         axios.get(`${url}/logOut`);
-        localStorage.removeItem('mozo')
+        localStorage.clear()
         handleClose();
         navigate('/')
     };

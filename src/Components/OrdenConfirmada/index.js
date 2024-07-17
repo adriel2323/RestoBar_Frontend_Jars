@@ -11,7 +11,6 @@ const OrdenConfirmada = () => {
     const nroMesa = window.location.pathname.split("/").pop()
     const { clearPedido} = useContext(OrdenContext)
     let orden = JSON.parse(localStorage.getItem(`orden-${nroMesa}`));
-    console.log(orden);
     let rows = [];
     let total = 0;
     let contador = 0;
@@ -36,8 +35,6 @@ const OrdenConfirmada = () => {
             }
         }
     }
-    console.log('Estas son las rows ',rows);
-
     const estadoMesa = async () => {
         let estado = '0'; //Estado 0 = Libre
         try {
@@ -87,10 +84,12 @@ const OrdenConfirmada = () => {
     }
 
     const navigate = useNavigate();
+    console.log(orden)
+    console.log(rows)
 
     return (
         <React.Fragment>
-            {orden !== null ? (
+            {rows.length !== 0  ? (
                 <React.Fragment>
                     
                     <Row className='row-padre' style={{ margin:'0' }}>
@@ -108,13 +107,13 @@ const OrdenConfirmada = () => {
                                 {rows.map((plato) => (
                                     <tr key={plato.key} style={{ fontWeight:'400', backgroundColor:variables.colorTerciario}} >
                                         <td>{plato.dscPlato}</td>
-                                        <td>{plato.cantidad}</td>
+                                        <td>{ plato.cantidad}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </Table>
                         <Row>
-                            <h3 style={{textAlign:'right'}}>Total: {total}</h3>
+                            <h3 style={{textAlign:'right'}}>Total: {total||0}</h3>
                         </Row>
                         <Row style={{
                             justifyContent: 'space-between', textAlign: 'center',

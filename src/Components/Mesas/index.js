@@ -33,7 +33,12 @@ const Mesas = () => {
   }
 
   useEffect(() => {
+    let mozoStorage= (JSON.parse(localStorage.getItem('mozo')))
+
+    localStorage.clear()
+    localStorage.setItem('mozo', JSON.stringify(mozoStorage))
     async function mostrarMesas() {
+      
       const response = await getMesas();
       if (response.status === 200) {
         const mesasConUrl = response.data.data.map(mesa => ({
