@@ -65,3 +65,20 @@ form {
   bottom: 0;
   justify-content: space-between;
 }
+
+.cartelDisable {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  width: 50vw;
+  height: 50vh;
+  padding: 10px;
+}
+
+.normalize {
+  width: 100vw;
+  height: 100vh;
+  padding: 10px;
+  object-fit: cover;  
+}

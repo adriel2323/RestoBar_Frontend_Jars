@@ -25,13 +25,15 @@ function Comentario(props) {
 
     const handleAgregarComentario = (idPlato) => {
         setNuevaOrden(nuevoNombre => {
+            console.log('Nuevo nombre ',nuevoNombre);
             const comentarioAgregado = { ...nuevoNombre.platos };
+            console.log('Estos son los comentarios agregados ',comentarioAgregado);
             comentarioAgregado[idPlato].dscPlato = `${comentarioAgregado[idPlato].dscPlato} (${comentario})`;
             return { ...nuevoNombre, platos: comentarioAgregado };
         });
         setComentario("");
     }
-
+    console.log('Estos son los comentarios',comentario);
     return (
         <Modal
             {...props}

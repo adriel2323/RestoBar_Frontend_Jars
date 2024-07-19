@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import { Navbar, NavDropdown, Modal, Button } from "react-bootstrap";
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { url } from '../services';
 import { variables } from '../../variables';
+import authContext  from '../../context/authProvider';
 
 const Header = (props, req, res) => {
+    const {available} = useContext(authContext)
+    
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
     
@@ -18,6 +21,11 @@ const Header = (props, req, res) => {
         handleClose();
         navigate('/')
     };
+    useEffect(() => {
+        if(localStorage.getItem('available')===false){
+            navigate('/')
+        }
+    },[available])
     
     // TRAYENDO EL NOMBRE DEL MOZO DE LOCALSTORAGE (MOZO)
     useEffect(() => {
@@ -32,6 +40,7 @@ const Header = (props, req, res) => {
     const ordenes = [];
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
+        console.log('estas son las key ',key);
         if (key.includes('orden-')) {
             const orden = JSON.parse(localStorage.getItem(key));
             if (orden && orden.ordenes) {
@@ -39,20 +48,21 @@ const Header = (props, req, res) => {
             ordenes.push({ nroMesa });
             }
         }
+        console.log('estas son las ordenes ',ordenes);
     }
     
     return (
         <>
-            <Navbar className='d-flex justify-content-between align-items-center'
-            style={{maxHeight:'70px'}}>
+            <Navbar className='d-flex align-items-center'
+            style={{ }}>
                 <h1 className='titulo' style={{color:variables.blanco, margin: '0 0 0 25px'}}>
                 {props.título}
                 </h1>
-                <NavDropdown style={{ color:variables.blanco, display: 'inline-block' }}
+                <NavDropdown style={{ color:variables.blanco }}
                 className='p-4' title={nomMozo} id="basic-nav-dropdown" >
                 <NavDropdown.Item onClick={()=>navigate("/mesas")}>Ver mesas</NavDropdown.Item>
                 {ordenes.map((orden) => (
-                    <NavDropdown.Item key={orden.nroMesa} onClick={() => navigate(`/ordenConfirmada/${orden.nroMesa}`)}>
+                    <NavDropdown.Item  key={orden.nroMesa} onClick={() => navigate(`/ordenConfirmada/${orden.nroMesa}`)}>
                     {`Mesa ${orden.nroMesa}`}
                     </NavDropdown.Item>
                 ))}                        

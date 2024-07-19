@@ -6,10 +6,14 @@ import AuthContext from '../../context/authProvider';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { variables } from '../../variables';
+import logo from '../../Assets/images/log.jpg'
+
+const CLIENTE_ID = 1
+console.log(CLIENTE_ID);
 
 
 const LoginTest = () => {
-    const { setAuth } = useContext(AuthContext);
+    const { setAuth,setAvailable,available } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -18,9 +22,35 @@ const LoginTest = () => {
     const [errMsg, setErrMsg] = useState('')
     const [bien, setBien] = useState(false)
 
-    useEffect(() => {
-      userRef.current.focus()
-    }, [])
+    const [status, setStatus] = useState({});
+
+    // useEffect(() => {
+    //   userRef.current.focus()
+    // }, [])
+
+    useEffect( () => {
+        const availableServer = localStorage.getItem('available')
+        console.log(availableServer);
+
+        if(availableServer == 'true'){
+            setAvailable(true)
+        }else{
+            async function cliente() {
+                const consulta_cliente=await axios.get(`${url}/check/${CLIENTE_ID}`)
+                if(consulta_cliente.data.code===0){
+                    setAvailable(false)
+                }else{
+                    const availableServer= consulta_cliente
+                    setStatus( availableServer.data)
+                    setAvailable( availableServer.data.habilitado);
+                    console.log(availableServer);
+                    localStorage.setItem('available', JSON.stringify(availableServer.data.habilitado))
+
+                }
+            }
+            cliente()
+        }
+    },[available])
     
     useEffect(()=>{
         setErrMsg('');
@@ -111,39 +141,54 @@ const LoginTest = () => {
         ) : (
 
         <React.Fragment>
-            <div className='color-overlay d-flex justify-content-center align-items-center'>
-                <Form className='form-login p-4 p-sm-3' 
-                style={{ maxWidth:"255px", display: 'flex', alignItems: 'center', borderRadius:"20px" }}
-                onSubmit={handleSubmit}>
-                    <Form.Label  className='logo-text' style={{color:variables.blanco}} >Bienvenido</Form.Label>
-                    <Col>
+            {
+                available ? (
+                    <div className='color-overlay d-flex justify-content-center align-items-center'>
+                        <Form className='form-login p-4 p-sm-3' 
+                        style={{ maxWidth:"255px", display: 'flex', alignItems: 'center', borderRadius:"20px" }}
+                        onSubmit={handleSubmit}>
+                            <Form.Label  className='logo-text' style={{color:variables.blanco}} >Bienvenido</Form.Label>
+                            <Col>
 
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control className='form-input' 
-                        type="text" name="nomUsr" placeholder="Usuario" 
-                        ref={userRef} autoComplete="off" 
-                        onChange={(e)=>setUser(e.target.value)} 
-                        value={nomUsr} required/>
-                    </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Control className='form-input' 
+                                type="text" name="nomUsr" placeholder="Usuario" 
+                                ref={userRef} autoComplete="off" 
+                                onChange={(e)=>setUser(e.target.value)} 
+                                value={nomUsr} required/>
+                            </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control className="form-input" 
-                        type="password" name="password" placeholder="Contraseña"
-                        onChange={(e)=> setPassword(e.target.value)}
-                        value={password} required/>
-                    </Form.Group>
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} 
-                    style={{ margin: '0',  fontWeight: '600', whiteSpace: 'pre-wrap', paddingBottom:"15px" }} aria-live="assertive">
-                        {errMsg}
-                    </p>
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Control className="form-input" 
+                                type="password" name="password" placeholder="Contraseña"
+                                onChange={(e)=> setPassword(e.target.value)}
+                                value={password} required/>
+                            </Form.Group>
+                            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} 
+                            style={{ margin: '0',  fontWeight: '600', whiteSpace: 'pre-wrap', paddingBottom:"15px" }} aria-live="assertive">
+                                {errMsg}
+                            </p>
 
-                    <Button type="submit"
-                    style={{backgroundColor: variables.colorSecundario, border:'none', color:'black'}}>
-                        Ingresar
-                    </Button>
-                    </Col>
-                </Form>
-            </div>
+                            <Button type="submit"
+                            style={{backgroundColor: variables.colorSecundario, border:'none', color:'black'}}>
+                                Ingresar
+                            </Button>
+                            </Col>
+                        </Form>
+            </div>) : (
+                <div className='normalize' >
+
+                    <div className='cartelDisable'>
+                            
+                        <h1 className=''>{status.msg}</h1>
+                    </div>
+                    
+                    <img src={logo} className="App-logo" alt="logo">
+                    </img>
+                </div>
+            )
+            }
+            
         </React.Fragment>
         )}
         </>

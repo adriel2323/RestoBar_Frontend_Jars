@@ -89,7 +89,7 @@ export const OrdenProvider = ({ children }) => {
 
 
   return (
-    <OrdenContext.Provider value={{ordenBD,setOrdenBD, ordenConfirmada, nuevaOrden, setNuevaOrden,eliminarPlato, agregarPlato, clearPedido, actualizarCantidad, confirmarPedido,limpiarPedidos }}>
+    <OrdenContext.Provider value={{ ordenBD,setOrdenBD, ordenConfirmada, nuevaOrden, setNuevaOrden,eliminarPlato, agregarPlato, clearPedido, actualizarCantidad, confirmarPedido,limpiarPedidos }}>
       {children}
     </OrdenContext.Provider>
   );
